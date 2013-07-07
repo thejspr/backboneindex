@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+ruby ./test/parser_test.rb
