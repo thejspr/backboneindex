@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
-require './lib/app'
+require 'json'
+require './parser/lib/parser'
 
-App.build_json
+result = Parser.parse("parser/backbone.wiki/Extensions,-Plugins,-Resources.md")
+File.open("data/extensions.json", 'w') { |f| f.write(result.to_json) }

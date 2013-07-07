@@ -1,9 +1,9 @@
-require './lib/parser'
 require 'minitest/autorun'
+require_relative '../lib/parser'
 
 class ParserTest < Minitest::Test
   def setup
-    @result = Parser.parse('backbone.wiki/Extensions,-Plugins,-Resources.md')
+    @result = Parser.parse('./parser/backbone.wiki/Extensions,-Plugins,-Resources.md')
   end
 
   def test_amount_of_categories
