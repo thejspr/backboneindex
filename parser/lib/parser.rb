@@ -22,7 +22,7 @@ class Parser
       next if lines.empty?
       { title: lines.first,
         category: category,
-        description: lines[1..-1].join(' ').strip }
+        description: lines[1..-1].join("\n").strip }
     end.compact
   end
 
