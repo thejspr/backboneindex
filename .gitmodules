@@ -1,0 +1,3 @@
+[submodule "backbone.wiki"]
+	path = backbone.wiki
+	url = git://github.com/documentcloud/backbone.wiki.git
