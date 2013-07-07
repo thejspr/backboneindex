@@ -1,0 +1,26 @@
+a:hover {
+  text-decoration: none;
+}
+
+#sidebar {
+  margin-left: 0;
+  background-color: gray;
+}
+
+#content {
+  margin-left: 0;
+  background-color: silver;
+}
+
+h1.title a {
+  color: #000;
+}
+
+.help {
+  font-size: 120%;
+  padding-top: 10px;
+}
+
+.centered {
+  text-align: center;
+}
