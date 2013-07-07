@@ -10,17 +10,19 @@ class Parser
 
   def parse
     categories.map do |category|
-      { title: category, rows: rows(category) }
-    end
+      rows(category)
+    end.flatten
   end
 
   private
 
   def rows(category)
     category_rows(category).map do |section|
-      lines = section.split("\n\n").map(&:strip)
+      lines = section.split("\n").map(&:strip)
       next if lines.empty?
-      { title: lines.first, description: lines[1..-1].join(' ') }
+      { title: lines.first,
+        category: category,
+        description: lines[1..-1].join(' ').strip }
     end.compact
   end
 

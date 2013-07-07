@@ -3,25 +3,24 @@ require_relative '../lib/parser'
 
 class ParserTest < Minitest::Test
   def setup
-    @result = Parser.parse('./parser/backbone.wiki/Extensions,-Plugins,-Resources.md')
+    @results = Parser.parse('./parser/backbone.wiki/Extensions,-Plugins,-Resources.md')
   end
 
-  def test_amount_of_categories
-    assert_equal @result.size, 13
+  def test_amount_of_extensions
+    assert_equal 136, @results.size
   end
 
-  def test_amount_of_rows_in_dependencies
-    assert_equal @result.first.fetch(:rows).size, 6
-  end
-
-  def test_amount_of_rows_in_last_category
-    assert_equal @result.last.fetch(:rows).size, 23
-  end
-
-  def test_entry_in_first_category
-    assert_equal @result.first.fetch(:rows).first, {
+  def test_first_extension
+    extension = {
       title: 'Underscore.js',
-      description: "Backbone's only hard dependency. [[http://underscorejs.org]]"
-    }
+      category: 'Dependencies',
+      description: "Backbone's only hard dependency. [[http://underscorejs.org]]" }
+
+    assert_equal extension, @results.first
+  end
+
+  def test_first_extension_in_the_model_category
+    assert_equal 'Backbone.ModelAttrs', @results[6][:title]
+    assert_equal 'Model', @results[6][:category]
   end
 end
