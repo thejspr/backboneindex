@@ -1,5 +1,13 @@
 $(function(){
-  var Extension = Backbone.Model.extend();
+  var Extension = Backbone.Model.extend({
+    descriptionHtml: function() {
+      var converter = new Showdown.converter();
+      return converter.makeHtml(this.attributes.description);
+    },
+    toAttributes: function() {
+      return {title: this.attributes.title, description: this.descriptionHtml()};
+    }
+  });
 
   var ExtensionList = Backbone.Collection.extend({
     model: Extension,
@@ -11,7 +19,7 @@ $(function(){
     template: _.template("<div class='extension'><h3><%= title %></h3><p><%= description %></p></div>"),
     render: function(eventName) {
       _.each(this.model.models, function(extension){
-        var extensionTemplate = this.template(extension.attributes);
+        var extensionTemplate = this.template(extension.toAttributes());
         $(this.el).append(extensionTemplate);
       }, this);
 
