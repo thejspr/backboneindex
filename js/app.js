@@ -1,7 +1,7 @@
 $(function(){
   var Extension = Backbone.Model.extend({
     descriptionHtml: function() {
-      var converter = new Showdown.converter();
+      var converter = new Showdown.converter({ extensions: ['github'] });
       return converter.makeHtml(this.attributes.description);
     },
     toAttributes: function() {
