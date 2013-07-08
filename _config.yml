@@ -3,4 +3,4 @@ url: http://backboneindex.com
 description: TODO
 pygments: false
 permalink: none
-exclude: ['bin/', 'parser/']
+exclude: ['bin', 'parser', 'gh-pages']
