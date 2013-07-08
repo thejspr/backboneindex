@@ -4,12 +4,10 @@ a:hover {
 
 #sidebar {
   margin-left: 0;
-  background-color: gray;
 }
 
 #content {
   margin-left: 0;
-  background-color: silver;
 }
 
 h1.title a {
@@ -23,4 +21,14 @@ h1.title a {
 
 .centered {
   text-align: center;
+}
+
+.sticky {
+  position: fixed;
+  width: 200px;
+  top: 20px;
+}
+
+input {
+  width: 187px;
 }
