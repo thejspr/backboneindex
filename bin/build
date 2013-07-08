@@ -3,5 +3,11 @@
 require 'json'
 require './parser/lib/parser'
 
-result = Parser.parse("parser/backbone.wiki/Extensions,-Plugins,-Resources.md")
-File.open("data/extensions.json", 'w') { |f| f.write(result.to_json) }
+parser = Parser.new(File.read("parser/backbone.wiki/Extensions,-Plugins,-Resources.md"))
+
+extensions = parser.parse
+File.open("data/extensions.json", 'w') { |f| f.write(extensions.to_json) }
+
+categories = parser.categories.map { |category| {title: category} }
+
+File.open('data/categories.json', 'w') { |f| f.write(categories.to_json) }
