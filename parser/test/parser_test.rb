@@ -3,7 +3,9 @@ require_relative '../lib/parser'
 
 class ParserTest < Minitest::Test
   def setup
-    @results = Parser.parse('./parser/backbone.wiki/Extensions,-Plugins,-Resources.md')
+    file = File.open(File.join(Dir.pwd, 'parser/backbone.wiki/Extensions,-Plugins,-Resources.md'))
+    @parser = Parser.new(file.read)
+    @results = @parser.parse
   end
 
   def test_amount_of_extensions
@@ -22,5 +24,9 @@ class ParserTest < Minitest::Test
   def test_first_extension_in_the_model_category
     assert_equal 'Backbone.ModelAttrs', @results[6][:title]
     assert_equal 'Model', @results[6][:category]
+  end
+
+  def test_categories_count
+    assert_equal 13, @parser.categories.count
   end
 end

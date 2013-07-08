@@ -6,15 +6,20 @@
     <title>{{ page.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 
-    <script type="text/javascript" src="/js/jquery-2.0.2.min.js"></script>
-    <script type="text/javascript" src="/js/showdown.js"></script>
-    <script type="text/javascript" src="/js/showdown-github.js"></script>
-    <script type="text/javascript" src="/js/underscore.js"></script>
-    <script type="text/javascript" src="/js/backbone.js"></script>
-    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="js/jquery-2.0.2.min.js"></script>
+
+    <script type="text/javascript" src="js/showdown.js"></script>
+    <script type="text/javascript" src="js/showdown-github.js"></script>
+
+    <script type="text/javascript" src="js/underscore.js"></script>
+    <script type="text/javascript" src="js/backbone.js"></script>
+    <script type="text/javascript" src="js/backbone-query.js"></script>
+
+    <script type="text/javascript" src="js/app/extension.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 
     <script type="text/javascript">
       // var _gaq = _gaq || [];
@@ -34,23 +39,11 @@
         <div id="sidebar" class="span3">
           <br />
           <div class="sticky">
-            <input type="search" name="" value="" placeholder='Search' />
-            <label class='checkbox'>
-              <input type="checkbox" >Dependencies
-            </label>
-            <label class='checkbox'>
-              <input type="checkbox" >Model
-            </label>
-            <label class='checkbox'>
-              <input type="checkbox" >View
-            </label>
-            <label class='checkbox'>
-              <input type="checkbox" >Router
-            </label>
-            <label class='checkbox'>
-              <input type="checkbox" >Other
-            </label>
-            <input type="button" class="btn pull-right" value="Search" name="" />
+            <form method="get">
+              <input type="search" name="" value="" placeholder='Search' />
+              <div id="categories"></div>
+              <input type="button" class="btn pull-right" value="Search" name="" />
+            </form>
           </div>
         </div>
 

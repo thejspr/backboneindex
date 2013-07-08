@@ -1,6 +1,3 @@
-[submodule "backbone.wiki"]
-  path = parser/backbone.wiki
-  url = git://github.com/documentcloud/backbone.wiki.git
 [submodule "parser/backbone.wiki"]
 	path = parser/backbone.wiki
 	url = git://github.com/documentcloud/backbone.wiki.git

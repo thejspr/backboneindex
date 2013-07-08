@@ -1,5 +1,4 @@
 class Parser
-
   def self.parse(filename)
     new(File.read(filename)).parse
   end
@@ -12,6 +11,10 @@ class Parser
     categories.map do |category|
       rows(category)
     end.flatten
+  end
+
+  def categories
+    @categories ||= @content.scan(/(\w+)\n-{4,}/).flatten
   end
 
   private
@@ -28,10 +31,6 @@ class Parser
 
   def category_rows(category)
     sections.fetch(categories.index(category)).split('### ')
-  end
-
-  def categories
-    @categories ||= @content.scan(/(\w+)\n-{4,}/).flatten
   end
 
   def sections
