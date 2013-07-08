@@ -15,7 +15,12 @@ task :publish do
   # Ensure gh-pages branch is up to date.
   Dir.chdir('gh-pages') do
     sh "git pull origin gh-pages"
+
+    # Clear previous build
+    puts "Cleaning up old build"
+    sh "rm -rf *"
   end
+
 
   # Copy to gh-pages dir.
   puts "Copying site to gh-pages branch..."
@@ -28,9 +33,11 @@ task :publish do
   puts "Committing and pushing to GitHub Pages..."
   sha = `git log`.match(/[a-z0-9]{40}/)[0]
   Dir.chdir('gh-pages') do
-    sh "git add ."
+    sh "git add -A"
     sh "git commit -m 'Updating to #{sha}.'"
     sh "git push origin gh-pages"
   end
   puts 'Done.'
 end
+
+task default: :publish
