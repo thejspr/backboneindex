@@ -7,7 +7,8 @@ var CategoryList = Backbone.Collection.extend({
 
 var CategoryView = Backbone.View.extend({
   events: {
-    'click .category': 'updateList'
+    'click .category': 'updateList',
+    'click .toggle': 'toggleCategories'
   },
   el: "#categories",
   template: _.template("<label class='checkbox'><input class='category' type='checkbox' value='<%= title %>' checked='checked'><%= title %></label>"),
@@ -16,6 +17,7 @@ var CategoryView = Backbone.View.extend({
       var categoryTemplate = this.template(category.toJSON());
       $(this.el).append(categoryTemplate);
     }, this);
+    $(this.el).append('<a href="#" class="toggle">Show/hide all</a>');
 
     return this;
   },
@@ -34,5 +36,9 @@ var CategoryView = Backbone.View.extend({
     });
 
     extensionsView.collection.reset(result);
+  },
+  toggleCategories: function() {
+    $('.category').prop('checked', $('.category:not(:checked)').length);
+    this.updateList();
   }
 });
