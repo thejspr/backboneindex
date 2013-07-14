@@ -29,6 +29,13 @@ h1.title a {
   top: 5px;
 }
 
-input {
-  width: 187px;
+.header {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+a.title {
+  font-weight: bold;
+  font-size: 26px;
+  color: #000;
 }
