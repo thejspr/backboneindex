@@ -1,4 +1,9 @@
+a {
+  font-weight: bold;
+  color: #eb2f7d;
+}
 a:hover {
+  color: #f05d9a;
   text-decoration: none;
 }
 
@@ -38,6 +43,11 @@ h1.title a {
 .header {
   margin-top: 15px;
   font-size: 14px;
+}
+
+.intro {
+  margin-top: 10px;
+  color: #444;
 }
 
 a.title {

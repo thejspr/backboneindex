@@ -1,6 +1,6 @@
 # Backbone Index
 
-Backbone aims at making the discovery of Backbone resources and plugins easier.
+Backbone Index aims at making the discovery of Backbone resources and plugins easier.
 This is achieved by parsing the official Backbone wiki pages and displaying the
 information on a [webpage](http://backboneindex.com).
 
