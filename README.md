@@ -9,6 +9,10 @@ information on a [webpage](http://backboneindex.com).
 I initiated this project with the aim of making something useful whilst learning
 Backbone.
 
+## Status
+
+[![Build Status](https://api.travis-ci.org/thejspr/backboneindex.png)](https://travis-ci.org/thejspr/backboneindex)
+
 ## Roadmap
 
 * Filter by keyword/search.
