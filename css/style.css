@@ -29,6 +29,12 @@ h1.title a {
   top: 5px;
 }
 
+.fork-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .header {
   margin-top: 15px;
   font-size: 14px;
