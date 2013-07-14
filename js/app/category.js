@@ -21,13 +21,18 @@ var CategoryView = Backbone.View.extend({
   },
   updateList: function(){
     var categories = [];
+    var result = [];
+    var extensionsView = appState.get('extensionsView');
 
     $('.category:checked').each(function(){
       categories.push($(this).val());
     });
 
-    var extensionsView = appState.get('extensionsView');
-    var result = queryEngine.createCollection(extensionsView.originalCollection.models).findAll({category: {$in: categories}});
-    extensionsView.collection.reset(result.models);
+    _.each(extensionsView.originalCollection.models, function(extension){
+      if (_.contains(categories, extension.get('category')))
+        result.push(extension);
+    });
+
+    extensionsView.collection.reset(result);
   }
 });
