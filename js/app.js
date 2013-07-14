@@ -4,16 +4,14 @@ var appState = new AppState;
 var categories = new CategoryList();
 var extensions = new ExtensionList();
 
-appState.set('categories', categories);
-appState.set('extensions', extensions);
-
 function initCategories() {
-  var categoriesView = new CategoryView({model: categories});
+  var categoriesView = new CategoryView({collection: categories});
   categoriesView.render();
 }
 
 function initExtensions() {
-  var extensionsView = new ExtensionView({model: extensions});
+  var extensionsView = new ExtensionView({collection: extensions});
+  appState.set('extensionsView', extensionsView);
   extensionsView.render();
 }
 

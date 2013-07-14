@@ -12,8 +12,8 @@ var CategoryView = Backbone.View.extend({
   el: "#categories",
   template: _.template("<label class='checkbox'><input class='category' type='checkbox' value='<%= title %>' checked='checked'><%= title %></label>"),
   render: function() {
-    _.each(this.model.models, function(category){
-      var categoryTemplate = this.template(category.attributes);
+    _.each(this.collection.models, function(category){
+      var categoryTemplate = this.template(category.toJSON());
       $(this.el).append(categoryTemplate);
     }, this);
 
@@ -26,8 +26,8 @@ var CategoryView = Backbone.View.extend({
       categories.push($(this).val());
     });
 
-    var extensions = appState.get('extensions').models;
-    var result = queryEngine.createCollection(extensions).findAll({category: {$in: categories}});
-    new ExtensionView({model: result}).render();
+    var extensionsView = appState.get('extensionsView');
+    var result = queryEngine.createCollection(extensionsView.originalCollection.models).findAll({category: {$in: categories}});
+    extensionsView.collection.reset(result.models);
   }
 });
