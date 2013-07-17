@@ -1,4 +1,4 @@
-class Parser
+class PluginsParser
   def self.parse(filename)
     new(File.read(filename)).parse
   end
