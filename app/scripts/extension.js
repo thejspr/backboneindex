@@ -2,7 +2,6 @@ var Extension = Backbone.Model.extend({
   descriptionHtml: function() {
     var converter = new Showdown.converter({ extensions: ['github'] });
     return converter.makeHtml(this.get('description'));
-    return this.get('description');
   },
   toAttributes: function() {
     return {title: this.get('title'), description: this.descriptionHtml()};
