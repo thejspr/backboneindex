@@ -4,6 +4,6 @@ set -e
 
 grunt build
 
-git add -A && git commit -m "Update release `date`"
+git add -A && git commit -a -m "Update release: `date +%d/%m/%Y-%M:%H`"
 
 git subtree push --prefix dist origin gh-pages
