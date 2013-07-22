@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+set -e
+
+grunt build
+
+git add -A && git commit -m "Update release `date`"
+
+git subtree push --prefix dist origin gh-pages

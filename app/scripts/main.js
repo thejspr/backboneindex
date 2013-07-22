@@ -3,7 +3,7 @@ require.config({
     zepto: '../bower_components/zepto/zepto',
     backbone: '../bower_components/backbone/backbone',
     underscore: '../bower_components/underscore/underscore',
-    showdown: '../bower_components/showdown/src/showdown',
+    showdown: '../bower_components/showdown/compressed/showdown',
     showdowngithub: 'vendor/showdown-github'
   }
 });
