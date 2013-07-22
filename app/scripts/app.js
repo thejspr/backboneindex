@@ -1,4 +1,4 @@
-var AppState  = Backbone.Model.extend({});
+var AppState = Backbone.Model.extend({});
 var appState = new AppState;
 
 var categories = new CategoryList();

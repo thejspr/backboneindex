@@ -1,0 +1,12 @@
+{
+  "name": "backboneindex",
+  "version": "0.0.1",
+  "dependencies": {
+    "sass-bootstrap": "~2.3.0",
+    "requirejs": "~2.1.4",
+    "modernizr": "~2.6.2",
+    "zepto": "~1.0.0",
+    "backbone" "~1.0.0"
+  },
+  "devDependencies": {}
+}
