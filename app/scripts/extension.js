@@ -31,9 +31,13 @@ var ExtensionView = Backbone.Marionette.ItemView.extend({
   }
 });
 
-var ExtensionsView = Backbone.Marionette.CollectionView.extend({
+var ExtensionsView = Backbone.Marionette.CompositeView.extend({
   el: "#extensions",
+  template: _.template("<div class='extension-counter'><em><%= length %> plugins</em></div><div id='extension-list'></div>"),
   itemView: ExtensionView,
+  templateHelpers: function() {
+    return {length: this.collection.length};
+  },
   filter: function() {
     var categories = [];
 
