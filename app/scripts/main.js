@@ -1,6 +1,6 @@
 require.config({
   paths: {
-    zepto: '../bower_components/zepto/zepto',
+    jquery: '../bower_components/jquery/jquery',
     backbone: '../bower_components/backbone/backbone',
     underscore: '../bower_components/underscore/underscore',
     showdown: '../bower_components/showdown/src/showdown',
@@ -9,5 +9,5 @@ require.config({
   }
 });
 
-require(['zepto', 'showdown', 'underscore', 'showdowngithub',
+require(['jquery', 'showdown', 'underscore', 'showdowngithub',
         'backbone', 'marionette', 'extension', 'category', 'app']);
