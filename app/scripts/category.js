@@ -22,20 +22,7 @@ var CategoryView = Backbone.View.extend({
     return this;
   },
   updateList: function(){
-    var categories = [];
-    var result = [];
-    var extensionsView = appState.get('extensionsView');
-
-    $('.category:checked').each(function(){
-      categories.push($(this).val());
-    });
-
-    _.each(extensionsView.originalCollection.models, function(extension){
-      if (_.contains(categories, extension.get('category')))
-        result.push(extension);
-    });
-
-    extensionsView.collection.reset(result);
+    appState.get('extensionsView').filterExtensions();
   },
   toggleCategories: function() {
     $('.category').prop('checked', $('.category:not(:checked)').length);

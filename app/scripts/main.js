@@ -4,9 +4,10 @@ require.config({
     backbone: '../bower_components/backbone/backbone',
     underscore: '../bower_components/underscore/underscore',
     showdown: '../bower_components/showdown/src/showdown',
-    showdowngithub: 'vendor/showdown-github'
+    showdowngithub: 'vendor/showdown-github',
+    marionette: '../bower_components/marionette/lib/backbone.marionette'
   }
 });
 
 require(['zepto', 'showdown', 'underscore', 'showdowngithub',
-        'backbone', 'extension', 'category', 'app']);
+        'backbone', 'marionette', 'extension', 'category', 'app']);

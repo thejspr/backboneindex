@@ -2,33 +2,47 @@ var Extension = Backbone.Model.extend({
   descriptionHtml: function() {
     var converter = new Showdown.converter({ extensions: ['github'] });
     return converter.makeHtml(this.get('description'));
-  },
-  toAttributes: function() {
-    return {title: this.get('title'), description: this.descriptionHtml()};
   }
 });
 
 var ExtensionList = Backbone.Collection.extend({
   model: Extension,
-  url: 'data/extensions.json'
+  url: 'data/extensions.json',
+  filter: function(categories) {
+    var result = [];
+
+    _.each(appState.get('allExtensions').models, function(extension){
+      if (_.contains(categories, extension.get('category')))
+        result.push(extension);
+    });
+
+    return new ExtensionList(result);
+  }
 });
 
-var ExtensionView = Backbone.View.extend({
-  el: "#extensions",
+var ExtensionView = Backbone.Marionette.ItemView.extend({
+  model: Extension,
   template: _.template("<div class='extension'><h3><%= title %></h3><p><%= description %></p></div>"),
+  serializeData: function() {
+    return {
+      "title": this.model.get('title'),
+      "description": this.model.descriptionHtml()
+    }
+  }
+});
 
-  initialize: function() {
-    this.originalCollection = $.extend({}, this.collection);
-    this.collection.on('reset', this.render, this);
-  },
+var ExtensionsView = Backbone.Marionette.CollectionView.extend({
+  el: "#extensions",
+  itemView: ExtensionView,
+  filterExtensions: function() {
+    var categories = [];
 
-  render: function() {
-    $(this.el).empty();
-    _.each(this.collection.models, function(extension){
-      var extensionTemplate = this.template(extension.toAttributes());
-      $(this.el).append(extensionTemplate);
-    }, this);
+    $('.category:checked').each(function(){
+      categories.push($(this).val());
+    });
 
-    return this;
+    var extensions = new ExtensionList()
+    this.collection = extensions.filter(categories);
+    this.render();
   }
 });

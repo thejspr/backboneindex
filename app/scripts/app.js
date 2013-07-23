@@ -10,8 +10,9 @@ function initCategories() {
 }
 
 function initExtensions() {
-  var extensionsView = new ExtensionView({collection: extensions});
+  var extensionsView = new ExtensionsView({collection: extensions});
   appState.set('extensionsView', extensionsView);
+  appState.set('allExtensions', extensions);
   extensionsView.render();
 }
 
