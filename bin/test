@@ -3,6 +3,8 @@ dir=`pwd`
 
 cd parser
 
+bundle install
+
 eval 'ruby test/plugins_parser_test.rb'
 
 result=$?
