@@ -11,7 +11,7 @@ var ExtensionList = Backbone.Collection.extend({
   filter: function(categories) {
     var result = [];
 
-    _.each(appState.get('allExtensions').models, function(extension){
+    _.each(App.allExtensions.models, function(extension){
       if (_.contains(categories, extension.get('category')))
         result.push(extension);
     });
@@ -34,7 +34,7 @@ var ExtensionView = Backbone.Marionette.ItemView.extend({
 var ExtensionsView = Backbone.Marionette.CollectionView.extend({
   el: "#extensions",
   itemView: ExtensionView,
-  filterExtensions: function() {
+  filter: function() {
     var categories = [];
 
     $('.category:checked').each(function(){

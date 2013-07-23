@@ -7,7 +7,7 @@ var CategoryList = Backbone.Collection.extend({
 
 var CategoryView = Backbone.View.extend({
   events: {
-    'click .category': 'updateList',
+    'click .category': 'triggerUpdate',
     'click .toggle': 'toggleCategories'
   },
   el: "#categories",
@@ -21,11 +21,11 @@ var CategoryView = Backbone.View.extend({
 
     return this;
   },
-  updateList: function(){
-    appState.get('extensionsView').filterExtensions();
+  triggerUpdate: function(){
+    App.vent.trigger('filterExtensions');
   },
   toggleCategories: function() {
     $('.category').prop('checked', $('.category:not(:checked)').length);
-    this.updateList();
+    this.triggerUpdate();
   }
 });
