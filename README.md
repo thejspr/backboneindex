@@ -13,6 +13,12 @@ Backbone.
 
 [![Build Status](https://api.travis-ci.org/thejspr/backboneindex.png)](https://travis-ci.org/thejspr/backboneindex)
 
+## Development
+
+The `bin` directory contains scripts for building, testing and releasing the
+application. To update thw Backbone wiki, go to `parser/backbone.wiki` and `git
+pull`.
+
 ## Roadmap
 
 * Filter by keyword/search.
