@@ -11,3 +11,5 @@ File.open("app/data/extensions.json", 'w') { |f| f.write(extensions.to_json) }
 categories = parser.categories.map { |category| {title: category} }
 
 File.open('app/data/categories.json', 'w') { |f| f.write(categories.to_json) }
+
+system 'grunt build'
