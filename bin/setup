@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+set -e
+
+npm install bower grunt
+
+grunt
+
+bower install
