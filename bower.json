@@ -2,8 +2,8 @@
   "name": "backboneindex",
   "version": "0.0.3",
   "dependencies": {
-    "sass-bootstrap": "~2.3.0",
-    "requirejs": "~2.1.4",
+    "sass-bootstrap": "~2.3",
+    "requirejs": "~2.1",
     "jquery": "~2.0",
     "underscore": "1.5.1",
     "backbone": "1.0.0",
