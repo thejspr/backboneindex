@@ -16,8 +16,8 @@ Backbone.
 ## Development
 
 The `bin` directory contains scripts for building, testing and releasing the
-application. To update thw Backbone wiki, go to `parser/backbone.wiki` and `git
-pull`.
+application. To update the Backbone wiki, go to `parser/backbone.wiki` and `git
+pull`. To get started, run `./bin/setup`
 
 ## Roadmap
 
@@ -26,5 +26,5 @@ pull`.
 
 ## Contributing
 
-1. Create an issue describing your proposed feature/fix/request.
-2. Once consensus has been made, hack away!
+1. Implement your feature/fix or create an issue
+2. Send a Pull-Request

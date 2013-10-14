@@ -4,6 +4,8 @@ set -e
 
 npm install bower grunt
 
-grunt
-
 bower install
+
+git submodule add --force git://github.com/documentcloud/backbone.wiki.git parser/backbone.wiki
+
+grunt build
