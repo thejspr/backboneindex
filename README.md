@@ -19,6 +19,8 @@ The `bin` directory contains scripts for building, testing and releasing the
 application. To update the Backbone wiki, go to `parser/backbone.wiki` and `git
 pull`. To get started, run `./bin/setup`
 
+For local development, start the server with `grunt serve`.
+
 ## Roadmap
 
 * Filter by keyword/search.

@@ -2,7 +2,7 @@
 
 set -e
 
-npm install bower grunt
+npm install bower grunt -g
 
 bower install
 
