@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>BackboneIndex</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="favicon.png">
+    {% stylesheet vendor/bootstrap %}
+    {% stylesheet app %}
+  </head>
+  <body>
+    <a href='https://github.com/thejspr/backboneindex' target='_blank'>
+      <img class='fork-badge' src='{% asset_path forkme_right_white_ffffff.png %}' alt='Fork me on GitHub'>
+    </a>
+    <div class='container'>
+      <div class='row'>
+        <div id='sidebar' class='col-xs-3'>
+          <br />
+          <div class='sticky'>
+            <form method='get'>
+              <h4>Categories</h4>
+              <div id='categories'></div>
+            </form>
+          </div>
+        </div>
+
+        <div id='content' class='col-xs-9'>
+          <div class='header'>
+            <a href='/' class='title'>Backbone Index</a>
+            ~ Discover new Backbone plugins and resources
+          </div>
+          <p class='intro'>
+            Backbone Index aims at making the discovery of <a href='http://backbonejs.org'>Backbone</a> resources
+            and plugins easier. It works by indexing the official Backbone
+            wiki, and then enabling filtering the information. Made by
+            <a href='http://thejspr.com' target='_blank' title='My blog/portfolio'>thejspr</a> /
+            <a href='http://twitter.com/thejspr' target='_blank' title='Follow me on twitter for updates to the site'>@thejspr</a>
+          </p>
+
+          <hr />
+
+          <div id="extensions"></div>
+        </div>
+
+      </div> <!-- content -->
+    </div>
+
+    <script>
+      var _gaq=[['_setAccount','UA-42402956-1'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src='//www.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+
+    {% javascript app %}
+  </body>
+</html>
