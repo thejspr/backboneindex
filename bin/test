@@ -1,12 +1,11 @@
 #!/usr/bin/env sh
-dir=`pwd`
+
+set -e
 
 cd parser
 
-eval 'ruby test/plugins_parser_test.rb'
+ruby test/plugins_parser_test.rb
 
-result=$?
+cd ..
 
-cd $dir
-
-exit $result
+bundle exec jekyll build
