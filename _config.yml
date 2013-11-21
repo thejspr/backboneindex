@@ -1,3 +1,4 @@
 name: BackboneIndex
 markdown: redcarpet
 pygments: true
+exclude: ['bin', 'parser']

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+set -e
+
+# git submodule add --force git://github.com/documentcloud/backbone.wiki.git parser/backbone.wiki
+
+cd parser && bundle install
+
+ruby test/plugins_parser_test.rb

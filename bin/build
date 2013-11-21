@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require './parser/lib/plugins_parser'
+
+parser = PluginsParser.new(File.read("parser/backbone.wiki/Extensions,-Plugins,-Resources.md"))
+
+extensions = parser.parse
+File.open("data/extensions.json", 'w') { |f| f.write(extensions.to_json) }
+
+categories = parser.categories.map { |category| {title: category} }
+
+File.open('data/categories.json', 'w') { |f| f.write(categories.to_json) }
