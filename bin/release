@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+set -e
+
+jekyll build --destination _gh-pages
+
+echo "Commiting changes and pushing to Github"
+
+cd _gh-pages
+
+git add -A
+git commit -a -m "New release"
+git push
+
+echo "Done. http://backboneindex.com"
