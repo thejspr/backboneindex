@@ -15516,7 +15516,7 @@ _.extend(Marionette.Module, {
     var App;
     App = new Marionette.Application();
     App.on("initialize:after", function() {
-      var categories, extensions, extensionsView, initCategories, initExtensions;
+      var categories, extensions, extensionsView, filterView, initCategories, initExtensions;
       categories = new App.Entities.CategoryList();
       extensions = new App.Entities.ExtensionList();
       initCategories = function() {
@@ -15539,8 +15539,13 @@ _.extend(Marionette.Module, {
       extensions.fetch({
         success: initExtensions
       });
-      return App.vent.on("filterExtensions", function() {
-        return extensionsView.filter();
+      filterView = new App.Views.FilterView();
+      filterView.render();
+      App.vent.on("categoriesChanged", function() {
+        return extensionsView.filterByCategories();
+      });
+      return App.vent.on("filterChanged", function() {
+        return extensionsView.filterByQuery();
       });
     });
     return App;
@@ -15582,8 +15587,8 @@ _.extend(Marionette.Module, {
   });
 
   this.BackboneIndex.module("Views", function(Views, App, Backbone, Marionette, $, _) {
-    var _ref;
-    return Views.CategoryView = (function(_super) {
+    var _ref, _ref1;
+    Views.CategoryView = (function(_super) {
       __extends(CategoryView, _super);
 
       function CategoryView() {
@@ -15610,7 +15615,7 @@ _.extend(Marionette.Module, {
       };
 
       CategoryView.prototype.triggerUpdate = function() {
-        return App.vent.trigger('filterExtensions');
+        return App.vent.trigger('categoriesChanged');
       };
 
       CategoryView.prototype.toggleCategories = function() {
@@ -15619,6 +15624,28 @@ _.extend(Marionette.Module, {
       };
 
       return CategoryView;
+
+    })(Backbone.View);
+    return Views.FilterView = (function(_super) {
+      __extends(FilterView, _super);
+
+      function FilterView() {
+        _ref1 = FilterView.__super__.constructor.apply(this, arguments);
+        return _ref1;
+      }
+
+      FilterView.prototype.events = {
+        'keyup': 'triggerUpdate',
+        'change': 'triggerUpdate'
+      };
+
+      FilterView.prototype.el = "#filter .filter";
+
+      FilterView.prototype.triggerUpdate = function() {
+        return App.vent.trigger('filterChanged');
+      };
+
+      return FilterView;
 
     })(Backbone.View);
   });
@@ -15646,6 +15673,10 @@ _.extend(Marionette.Module, {
         return converter.makeHtml(this.get('description'));
       };
 
+      Extension.prototype.hidden = function() {
+        return this.get('hiddenByCategory') || this.get('hiddenByFilter');
+      };
+
       return Extension;
 
     })(Backbone.Model);
@@ -15660,17 +15691,6 @@ _.extend(Marionette.Module, {
       ExtensionList.prototype.model = Entities.Extension;
 
       ExtensionList.prototype.url = 'data/extensions.json';
-
-      ExtensionList.prototype.filter = function(categories) {
-        var result;
-        result = [];
-        _.each(App.allExtensions.models, function(extension) {
-          if (_.contains(categories, extension.get('category'))) {
-            return result.push(extension);
-          }
-        });
-        return new ExtensionList(result);
-      };
 
       return ExtensionList;
 
@@ -15689,12 +15709,39 @@ _.extend(Marionette.Module, {
 
       ExtensionView.prototype.model = App.Entities.Extension;
 
-      ExtensionView.prototype.template = _.template("<div class='extension'><h3><%= title %></h3><p><%= description %></p></div>");
+      ExtensionView.prototype.template = _.template("<div class='pull-right label label-pink'><%= category %></div><h3><%= title %></h3><p><%= description %></p>");
+
+      ExtensionView.prototype.attributes = function() {
+        return {
+          "class": "extension " + (this.displayClass())
+        };
+      };
+
+      ExtensionView.prototype.initialize = function() {
+        return this.listenTo(this.model, 'change', this.setDisplay);
+      };
+
+      ExtensionView.prototype.displayClass = function() {
+        if (this.model.hidden()) {
+          return 'hidden';
+        } else {
+          return '';
+        }
+      };
+
+      ExtensionView.prototype.setDisplay = function() {
+        if (this.model.hidden()) {
+          return this.$el.addClass('hidden');
+        } else {
+          return this.$el.removeClass('hidden');
+        }
+      };
 
       ExtensionView.prototype.serializeData = function() {
         return {
           "title": this.model.get('title'),
-          "description": this.model.descriptionHtml()
+          "description": this.model.descriptionHtml(),
+          "category": this.model.get('category')
         };
       };
 
@@ -15715,21 +15762,41 @@ _.extend(Marionette.Module, {
 
       ExtensionsView.prototype.itemView = Views.ExtensionView;
 
+      ExtensionsView.prototype.initialize = function() {
+        return this.listenTo(this.collection, 'change', this.refreshCounter);
+      };
+
+      ExtensionsView.prototype.refreshCounter = function() {
+        var count;
+        count = this.$el.find('.extension:not(.hidden)').length;
+        return this.$el.find('.extension-counter > em').text("" + count + " plugins");
+      };
+
       ExtensionsView.prototype.templateHelpers = function() {
         return {
           length: this.collection.length
         };
       };
 
-      ExtensionsView.prototype.filter = function() {
-        var categories, extensions;
+      ExtensionsView.prototype.filterByQuery = function() {
+        var regex;
+        regex = new RegExp($('#query').val(), 'i');
+        return _.each(this.collection.models, function(extension) {
+          var hide;
+          hide = extension.get('title').search(regex) === -1 && extension.get('description').search(regex) === -1;
+          return extension.set('hiddenByFilter', hide);
+        });
+      };
+
+      ExtensionsView.prototype.filterByCategories = function() {
+        var categories;
         categories = [];
         $('.category:checked').each(function() {
           return categories.push($(this).val());
         });
-        extensions = new App.Entities.ExtensionList();
-        this.collection = extensions.filter(categories);
-        return this.render();
+        return _.each(this.collection.models, function(extension) {
+          return extension.set('hiddenByCategory', !_.contains(categories, extension.get('category')));
+        });
       };
 
       return ExtensionsView;
