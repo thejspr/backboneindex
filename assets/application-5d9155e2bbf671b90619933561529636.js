@@ -15512,13 +15512,48 @@ _.extend(Marionette.Module, {
   return Marionette;
 })(this, Backbone, _);
 (function() {
+  this.BackboneIndex = (function(Marionette) {
+    var App;
+    App = new Marionette.Application();
+    App.on("initialize:after", function() {
+      var categories, extensions, extensionsView, initCategories, initExtensions;
+      categories = new App.Entities.CategoryList();
+      extensions = new App.Entities.ExtensionList();
+      initCategories = function() {
+        var categoriesView;
+        categoriesView = new App.Views.CategoryView({
+          collection: categories
+        });
+        return categoriesView.render();
+      };
+      extensionsView = new App.Views.ExtensionsView({
+        collection: extensions
+      });
+      initExtensions = function() {
+        App.allExtensions = extensions;
+        return extensionsView.render();
+      };
+      categories.fetch({
+        success: initCategories
+      });
+      extensions.fetch({
+        success: initExtensions
+      });
+      return App.vent.on("filterExtensions", function() {
+        return extensionsView.filter();
+      });
+    });
+    return App;
+  })(Marionette);
+
+}).call(this);
+(function() {
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  $(function() {
-    var App, Category, CategoryList, CategoryView, Extension, ExtensionList, ExtensionView, ExtensionsView, categories, extensions, extensionsView, initCategories, initExtensions, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
-    App = new Backbone.Marionette.Application();
-    Category = (function(_super) {
+  this.BackboneIndex.module("Entities", function(Entities, App, Backbone, Marionette, $, _) {
+    var _ref, _ref1;
+    Entities.Category = (function(_super) {
       __extends(Category, _super);
 
       function Category() {
@@ -15529,7 +15564,7 @@ _.extend(Marionette.Module, {
       return Category;
 
     })(Backbone.Model);
-    CategoryList = (function(_super) {
+    return Entities.CategoryList = (function(_super) {
       __extends(CategoryList, _super);
 
       function CategoryList() {
@@ -15537,19 +15572,23 @@ _.extend(Marionette.Module, {
         return _ref1;
       }
 
-      CategoryList.prototype.model = Category;
+      CategoryList.prototype.model = Entities.Category;
 
       CategoryList.prototype.url = 'data/categories.json';
 
       return CategoryList;
 
     })(Backbone.Collection);
-    CategoryView = (function(_super) {
+  });
+
+  this.BackboneIndex.module("Views", function(Views, App, Backbone, Marionette, $, _) {
+    var _ref;
+    return Views.CategoryView = (function(_super) {
       __extends(CategoryView, _super);
 
       function CategoryView() {
-        _ref2 = CategoryView.__super__.constructor.apply(this, arguments);
-        return _ref2;
+        _ref = CategoryView.__super__.constructor.apply(this, arguments);
+        return _ref;
       }
 
       CategoryView.prototype.events = {
@@ -15582,12 +15621,21 @@ _.extend(Marionette.Module, {
       return CategoryView;
 
     })(Backbone.View);
-    Extension = (function(_super) {
+  });
+
+}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  this.BackboneIndex.module("Entities", function(Entities, App, Backbone, Marionette, $, _) {
+    var _ref, _ref1;
+    Entities.Extension = (function(_super) {
       __extends(Extension, _super);
 
       function Extension() {
-        _ref3 = Extension.__super__.constructor.apply(this, arguments);
-        return _ref3;
+        _ref = Extension.__super__.constructor.apply(this, arguments);
+        return _ref;
       }
 
       Extension.prototype.descriptionHtml = function() {
@@ -15601,15 +15649,15 @@ _.extend(Marionette.Module, {
       return Extension;
 
     })(Backbone.Model);
-    ExtensionList = (function(_super) {
+    return Entities.ExtensionList = (function(_super) {
       __extends(ExtensionList, _super);
 
       function ExtensionList() {
-        _ref4 = ExtensionList.__super__.constructor.apply(this, arguments);
-        return _ref4;
+        _ref1 = ExtensionList.__super__.constructor.apply(this, arguments);
+        return _ref1;
       }
 
-      ExtensionList.prototype.model = Extension;
+      ExtensionList.prototype.model = Entities.Extension;
 
       ExtensionList.prototype.url = 'data/extensions.json';
 
@@ -15627,15 +15675,19 @@ _.extend(Marionette.Module, {
       return ExtensionList;
 
     })(Backbone.Collection);
-    ExtensionView = (function(_super) {
+  });
+
+  this.BackboneIndex.module("Views", function(Views, App, Backbone, Marionette, $, _) {
+    var _ref, _ref1;
+    Views.ExtensionView = (function(_super) {
       __extends(ExtensionView, _super);
 
       function ExtensionView() {
-        _ref5 = ExtensionView.__super__.constructor.apply(this, arguments);
-        return _ref5;
+        _ref = ExtensionView.__super__.constructor.apply(this, arguments);
+        return _ref;
       }
 
-      ExtensionView.prototype.model = Extension;
+      ExtensionView.prototype.model = App.Entities.Extension;
 
       ExtensionView.prototype.template = _.template("<div class='extension'><h3><%= title %></h3><p><%= description %></p></div>");
 
@@ -15648,20 +15700,20 @@ _.extend(Marionette.Module, {
 
       return ExtensionView;
 
-    })(Backbone.Marionette.ItemView);
-    ExtensionsView = (function(_super) {
+    })(Marionette.ItemView);
+    return Views.ExtensionsView = (function(_super) {
       __extends(ExtensionsView, _super);
 
       function ExtensionsView() {
-        _ref6 = ExtensionsView.__super__.constructor.apply(this, arguments);
-        return _ref6;
+        _ref1 = ExtensionsView.__super__.constructor.apply(this, arguments);
+        return _ref1;
       }
 
       ExtensionsView.prototype.el = "#extensions";
 
       ExtensionsView.prototype.template = _.template("<div class='extension-counter'><em><%= length %> plugins</em></div><div id='extension-list'></div>");
 
-      ExtensionsView.prototype.itemView = ExtensionView;
+      ExtensionsView.prototype.itemView = Views.ExtensionView;
 
       ExtensionsView.prototype.templateHelpers = function() {
         return {
@@ -15675,39 +15727,18 @@ _.extend(Marionette.Module, {
         $('.category:checked').each(function() {
           return categories.push($(this).val());
         });
-        extensions = new ExtensionList();
+        extensions = new App.Entities.ExtensionList();
         this.collection = extensions.filter(categories);
         return this.render();
       };
 
       return ExtensionsView;
 
-    })(Backbone.Marionette.CompositeView);
-    categories = new CategoryList();
-    extensions = new ExtensionList();
-    initCategories = function() {
-      var categoriesView;
-      categoriesView = new CategoryView({
-        collection: categories
-      });
-      return categoriesView.render();
-    };
-    extensionsView = new ExtensionsView({
-      collection: extensions
-    });
-    initExtensions = function() {
-      App.allExtensions = extensions;
-      return extensionsView.render();
-    };
-    categories.fetch({
-      success: initCategories
-    });
-    extensions.fetch({
-      success: initExtensions
-    });
-    return App.vent.on("filterExtensions", function() {
-      return extensionsView.filter();
-    });
+    })(Marionette.CompositeView);
   });
+
+}).call(this);
+(function() {
+
 
 }).call(this);
