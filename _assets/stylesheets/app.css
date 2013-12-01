@@ -32,6 +32,11 @@ h1.title a {
   position: fixed;
   width: 200px;
   top: 5px;
+  -webkit-transform: translatez(0)
+  -moz-transform: translatez(0)
+  -ms-transform: translatez(0)
+  -o-transform: translatez(0)
+  transform: translatez(0)
 }
 
 .fork-badge {
