@@ -4,6 +4,8 @@
     descriptionHtml: ->
       converter = new Showdown.converter({ extensions: ['github'] })
       return converter.makeHtml(@.get('description'))
+    hidden: ->
+      @.get('hiddenByCategory') || @.get('hiddenByFilter')
 
   class Entities.ExtensionList extends Backbone.Collection
     model: Entities.Extension
@@ -18,11 +20,11 @@
     attributes: ->
       class: "extension #{@.displayClass()}"
     initialize: ->
-      @.listenTo(@.model, 'change:hidden', @.setDisplay)
+      @.listenTo(@.model, 'change', @.setDisplay)
     displayClass: ->
-      if @.model.get('hidden') then 'hidden' else ''
+      if @.model.hidden() then 'hidden' else ''
     setDisplay: ->
-      if @.model.get('hidden')
+      if @.model.hidden()
         @.$el.addClass('hidden')
       else
         @.$el.removeClass('hidden')
@@ -44,12 +46,13 @@
     filterByQuery: ->
       regex = new RegExp($('#query').val(), 'i')
       _.each @.collection.models, (extension) ->
-        extension.set('hidden', extension.get('title').search(regex) == -1)
+        hide = extension.get('title').search(regex) == -1 && extension.get('description').search(regex) == -1
+        extension.set('hiddenByFilter', hide)
     filterByCategories: ->
       categories = []
       $('.category:checked').each ->
         categories.push($(@).val())
 
       _.each @.collection.models, (extension) ->
-        extension.set('hidden', !_.contains(categories, extension.get('category')))
+        extension.set('hiddenByCategory', !_.contains(categories, extension.get('category')))
 
