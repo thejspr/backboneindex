@@ -16,7 +16,7 @@
 
   class Views.ExtensionView extends Marionette.ItemView
     model: App.Entities.Extension
-    template: _.template("<h3><%= title %></h3><p><%= description %></p>")
+    template: _.template("<div class='pull-right label label-pink'><%= category %></div><h3><%= title %></h3><p><%= description %></p>")
     attributes: ->
       class: "extension #{@.displayClass()}"
     initialize: ->
@@ -30,7 +30,8 @@
         @.$el.removeClass('hidden')
     serializeData: ->
       "title": @.model.get('title'),
-      "description": @.model.descriptionHtml()
+      "description": @.model.descriptionHtml(),
+      "category": @.model.get('category')
 
   class Views.ExtensionsView extends Marionette.CompositeView
     el: "#extensions"
