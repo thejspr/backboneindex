@@ -2,6 +2,3 @@ language: ruby
 cache: bundler
 rvm: "2.0.0"
 script: bin/test
-
-notifications:
-  email: false
