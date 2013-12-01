@@ -22,8 +22,16 @@
       , @)
       @.$el.append('<a href="#" class="toggle">Show/hide all</a>')
     triggerUpdate: ->
-      App.vent.trigger('filterExtensions')
+      App.vent.trigger('categoriesChanged')
     toggleCategories: ->
       $('.category').prop('checked', $('.category:not(:checked)').length)
       @.triggerUpdate()
+
+  class Views.FilterView extends Backbone.View
+    events:
+      'input': 'triggerUpdate',
+    el: "#filter .filter"
+    triggerUpdate: ->
+      query = @.$el.val()
+      App.vent.trigger('filterChanged') unless query.length < 3
 

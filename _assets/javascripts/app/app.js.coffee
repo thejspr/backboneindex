@@ -19,8 +19,11 @@
     categories.fetch({ success: initCategories })
     extensions.fetch({ success: initExtensions })
 
-    App.vent.on "filterExtensions", ->
-      extensionsView.filter()
+    filterView = new App.Views.FilterView()
+    filterView.render()
+
+    App.vent.on "categoriesChanged", ->
+      extensionsView.filterByCategories()
 
   App
 

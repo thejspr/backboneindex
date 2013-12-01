@@ -8,40 +8,44 @@
   class Entities.ExtensionList extends Backbone.Collection
     model: Entities.Extension
     url: 'data/extensions.json'
-    filter: (categories) ->
-      result = []
-
-      _.each(App.allExtensions.models, (extension) ->
-        result.push(extension) if (_.contains(categories, extension.get('category')))
-      )
-
-      new ExtensionList(result)
 
 
 @BackboneIndex.module "Views", (Views, App, Backbone, Marionette, $, _) ->
 
   class Views.ExtensionView extends Marionette.ItemView
     model: App.Entities.Extension
-    template: _.template("<div class='extension'><h3><%= title %></h3><p><%= description %></p></div>")
+    template: _.template("<h3><%= title %></h3><p><%= description %></p>")
+    attributes: ->
+      class: "extension #{@.displayClass()}"
+    initialize: ->
+      @.listenTo(@.model, 'change:hidden', this.setDisplay)
+    displayClass: ->
+      if @.model.get('hidden') then 'hidden' else ''
+    setDisplay: ->
+      if @.model.get('hidden')
+        @.$el.addClass('hidden')
+      else
+        @.$el.removeClass('hidden')
     serializeData: ->
-      return {
-        "title": @.model.get('title'),
-        "description": @.model.descriptionHtml()
-      }
+      "title": @.model.get('title'),
+      "description": @.model.descriptionHtml()
 
   class Views.ExtensionsView extends Marionette.CompositeView
     el: "#extensions"
     template: _.template("<div class='extension-counter'><em><%= length %> plugins</em></div><div id='extension-list'></div>")
     itemView: Views.ExtensionView
+    initialize: ->
+      @.listenTo(this.collection, 'change', @.refreshCounter)
+    refreshCounter: ->
+      count = @.$el.find('.extension:not(.hidden)').length
+      @.$el.find('.extension-counter > em').text("#{count} plugins")
     templateHelpers: ->
       return {length: @.collection.length}
-    filter: ->
+    filterByCategories: ->
       categories = []
-
       $('.category:checked').each ->
         categories.push($(@).val())
 
-      extensions = new App.Entities.ExtensionList()
-      @.collection = extensions.filter(categories)
-      @.render()
+      _.each @.collection.models, (extension) ->
+        extension.set('hidden', !_.contains(categories, extension.get('category')))
 
