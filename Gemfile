@@ -10,6 +10,3 @@ gem 'jekyll-assets'
 gem 'sass'
 gem 'coffee-script'
 gem 'uglifier'
-
-# parser requirements
-gem 'minitest'

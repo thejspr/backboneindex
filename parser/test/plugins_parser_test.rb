@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require_relative '../lib/plugins_parser'
 
-class PluginsParserTest < Minitest::Test
+class PluginsParserTest < Minitest::Unit::TestCase
   def setup
     file = File.open(File.join(Dir.pwd, 'backbone.wiki/Extensions,-Plugins,-Resources.md'))
     @parser = PluginsParser.new(file.read)
