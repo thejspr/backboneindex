@@ -54,6 +54,11 @@
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
 
-    {% javascript app %}
+    {% javascript application %}
+    <script>
+      $(function(){
+        BackboneIndex.start();
+      });
+    </script>
   </body>
 </html>
