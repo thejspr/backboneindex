@@ -46,7 +46,6 @@ GEM
       rb-kqueue (>= 0.2)
     maruku (0.6.1)
       syntax (>= 1.0.0)
-    minitest (5.0.8)
     multi_json (1.8.2)
     posix-spawn (0.3.6)
     pygments.rb (0.5.4)
@@ -82,7 +81,6 @@ DEPENDENCIES
   coffee-script
   github-pages
   jekyll-assets
-  minitest
   rake (~> 10.0)
   sass
   uglifier
