@@ -6,6 +6,6 @@ cd parser
 
 ruby test/plugins_parser_test.rb
 
-cd ..
-
-bundle exec jekyll build
+# TODO: test jekyll site build
+# cd ..
+# bundle exec jekyll build
