@@ -29,9 +29,9 @@
 
   class Views.FilterView extends Backbone.View
     events:
-      'input': 'triggerUpdate',
+      'keyup': 'triggerUpdate'
     el: "#filter .filter"
     triggerUpdate: ->
-      query = @.$el.val()
-      App.vent.trigger('filterChanged') unless query.length < 3
+      # query = @.$el.val()
+      App.vent.trigger('filterChanged')# unless query.length < 3
 

@@ -25,5 +25,8 @@
     App.vent.on "categoriesChanged", ->
       extensionsView.filterByCategories()
 
+    App.vent.on "filterChanged", ->
+      extensionsView.filterByQuery()
+
   App
 

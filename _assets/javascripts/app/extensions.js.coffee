@@ -18,7 +18,7 @@
     attributes: ->
       class: "extension #{@.displayClass()}"
     initialize: ->
-      @.listenTo(@.model, 'change:hidden', this.setDisplay)
+      @.listenTo(@.model, 'change:hidden', @.setDisplay)
     displayClass: ->
       if @.model.get('hidden') then 'hidden' else ''
     setDisplay: ->
@@ -35,12 +35,16 @@
     template: _.template("<div class='extension-counter'><em><%= length %> plugins</em></div><div id='extension-list'></div>")
     itemView: Views.ExtensionView
     initialize: ->
-      @.listenTo(this.collection, 'change', @.refreshCounter)
+      @.listenTo(@.collection, 'change', @.refreshCounter)
     refreshCounter: ->
       count = @.$el.find('.extension:not(.hidden)').length
       @.$el.find('.extension-counter > em').text("#{count} plugins")
     templateHelpers: ->
       return {length: @.collection.length}
+    filterByQuery: ->
+      regex = new RegExp($('#query').val(), 'i')
+      _.each @.collection.models, (extension) ->
+        extension.set('hidden', extension.get('title').search(regex) == -1)
     filterByCategories: ->
       categories = []
       $('.category:checked').each ->
