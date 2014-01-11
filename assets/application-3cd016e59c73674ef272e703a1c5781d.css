@@ -22,6 +22,9 @@ a:hover {
 #content {
   margin-left: 0; }
 
+#extensions {
+  overflow: scroll; }
+
 h1.title a {
   color: black; }
 
