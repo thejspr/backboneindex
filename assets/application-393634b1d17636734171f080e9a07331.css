@@ -85,6 +85,12 @@ a.title {
   #categories {
     display: none; }
 
+  .categories-wrapper {
+    padding: 0; }
+
+  #filter {
+    padding: 0; }
+
   .forkme img {
     width: 100px; }
 

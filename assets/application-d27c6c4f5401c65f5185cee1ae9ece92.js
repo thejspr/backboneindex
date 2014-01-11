@@ -15818,10 +15818,11 @@ _.extend(Marionette.Module, {
     }
   };
 
+  moveSidebar();
+
   $(window).resize(moveSidebar);
 
   $(document).ready(function() {
-    moveSidebar();
     return $('[data-toggle]').click(function() {
       var selector;
       selector = $(this).data('toggle');
