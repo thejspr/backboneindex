@@ -6,11 +6,11 @@
     if $('#content #sidebar').length > 0
       $('#sidebar').insertBefore($('#content'))
 
+moveSidebar()
+
 $(window).resize(moveSidebar)
 
 $(document).ready ->
-  moveSidebar()
-
   $('[data-toggle]').click ->
     selector = $(this).data('toggle')
     $(selector).slideToggle()
