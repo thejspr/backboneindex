@@ -1,12 +1,12 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
     <title>BackboneIndex</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" href="favicon.png">
+    <meta name='description' content=''>
+    <meta name='viewport' content='width=device-width'>
+    <link rel='shortcut icon' href='favicon.png'>
     {% stylesheet application %}
   </head>
   <body>
@@ -15,19 +15,20 @@
     </a>
     <div class='container'>
       <div class='row'>
-        <div id='sidebar' class='col-xs-3'>
-          <br />
-          <div class='sticky'>
-            <div id="filter">
+        <div id='sidebar' class='col-sm-3 col-xs-12'>
+          <div class='sticky row'>
+            <div id='filter' class='col-sm-12 col-xs-6 col-xs-push-6'>
               <h4>Filter</h4>
-              <input id='query' type='search' placeholder='Type here to filter the list' class='form-control filter' />
+              <input id='query' type='search' placeholder='Type here to filter' class='form-control filter' />
             </div>
-            <h4>Categories</h4>
-            <div id='categories'></div>
+            <div class='col-sm-12 col-xs-6 col-xs-pull-6'>
+              <h4 data-toggle='#categories' class='togglable'>Categories</h4>
+              <div id='categories'></div>
+            </div>
           </div>
         </div>
 
-        <div id='content' class='col-xs-9'>
+        <div id='content' class='col-sm-9 col-xs-12'>
           <div class='header'>
             <a href='/' class='title'>Backbone Index</a>
             ~ Discover new Backbone plugins and resources
@@ -43,10 +44,9 @@
 
           <hr />
 
-          <div id="extensions"></div>
+          <div id='extensions'></div>
         </div>
-
-      </div> <!-- content -->
+      </div>
     </div>
 
     <script>
