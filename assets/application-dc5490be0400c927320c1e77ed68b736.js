@@ -15806,15 +15806,31 @@ _.extend(Marionette.Module, {
 
 }).call(this);
 (function() {
-  $(document).ready(function() {
+  this.moveSidebar = function() {
     if ($(window).width() < 769) {
-      $('#sidebar').insertAfter($('.intro'));
+      if ($('#content #sidebar').length === 0) {
+        return $('#sidebar').insertAfter($('.intro'));
+      }
+    } else {
+      if ($('#content #sidebar').length > 0) {
+        return $('#sidebar').insertBefore($('#content'));
+      }
     }
+  };
+
+  $(window).resize(moveSidebar);
+
+  $(document).ready(function() {
+    moveSidebar();
     return $('[data-toggle]').click(function() {
       var selector;
       selector = $(this).data('toggle');
       return $(selector).slideToggle();
     });
   });
+
+}).call(this);
+(function() {
+
 
 }).call(this);

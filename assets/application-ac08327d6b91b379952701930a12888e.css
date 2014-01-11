@@ -82,6 +82,9 @@ a.title {
   #categories {
     display: none; }
 
+  .forkme img {
+    width: 100px; }
+
   .togglable {
     cursor: pointer; }
     .togglable:after {
