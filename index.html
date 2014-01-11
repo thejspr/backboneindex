@@ -1,13 +1,13 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
     <title>BackboneIndex</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" href="favicon.png">
-    <link rel="stylesheet" href="/assets/application-0af6668dd0dcd08152bdd21405241490.css">
+    <meta name='description' content=''>
+    <meta name='viewport' content='width=device-width'>
+    <link rel='shortcut icon' href='favicon.png'>
+    <link rel="stylesheet" href="/assets/application-d020642b843bb33e4836d974678e0408.css">
   </head>
   <body>
     <a href='https://github.com/thejspr/backboneindex' target='_blank'>
@@ -15,19 +15,20 @@
     </a>
     <div class='container'>
       <div class='row'>
-        <div id='sidebar' class='col-xs-3'>
-          <br />
-          <div class='sticky'>
-            <div id="filter">
+        <div id='sidebar' class='col-sm-3 col-xs-12'>
+          <div class='sticky row'>
+            <div id='filter' class='col-sm-12 col-xs-6 col-xs-push-6'>
               <h4>Filter</h4>
-              <input id='query' type='search' placeholder='Type here to filter the list' class='form-control filter' />
+              <input id='query' type='search' placeholder='Type here to filter' class='form-control filter' />
             </div>
-            <h4>Categories</h4>
-            <div id='categories'></div>
+            <div class='col-sm-12 col-xs-6 col-xs-pull-6'>
+              <h4 data-toggle='#categories' class='togglable'>Categories</h4>
+              <div id='categories'></div>
+            </div>
           </div>
         </div>
 
-        <div id='content' class='col-xs-9'>
+        <div id='content' class='col-sm-9 col-xs-12'>
           <div class='header'>
             <a href='/' class='title'>Backbone Index</a>
             ~ Discover new Backbone plugins and resources
@@ -38,15 +39,14 @@
             wiki, and then enabling filtering the information. Made by
             <a href='http://thejspr.com' target='_blank' title='My blog/portfolio'>thejspr</a> /
             <a href='http://twitter.com/thejspr' target='_blank' title='Follow me on twitter for updates to the site'>@thejspr</a>
-            <span class='hint'>&nbsp;<em>last updated 04 Jan 2014</em></span>
+            <span class='hint'>&nbsp;<em>last updated 11 Jan 2014</em></span>
           </p>
 
           <hr />
 
-          <div id="extensions"></div>
+          <div id='extensions'></div>
         </div>
-
-      </div> <!-- content -->
+      </div>
     </div>
 
     <script>
@@ -56,7 +56,7 @@
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
 
-    <script src="/assets/application-1564125132bde2c96e19ff7ff0666e3d.js"></script>
+    <script src="/assets/application-e6797d3699dfa9b18726588ab5313211.js"></script>
     <script>
       $(function(){
         BackboneIndex.start();

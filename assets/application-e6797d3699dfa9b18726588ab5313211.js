@@ -15806,6 +15806,15 @@ _.extend(Marionette.Module, {
 
 }).call(this);
 (function() {
-
+  $(document).ready(function() {
+    if ($(window).width() < 769) {
+      $('#sidebar').insertAfter($('.intro'));
+    }
+    return $('[data-toggle]').click(function() {
+      var selector;
+      selector = $(this).data('toggle');
+      return $(selector).slideToggle();
+    });
+  });
 
 }).call(this);
