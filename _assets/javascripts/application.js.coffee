@@ -10,11 +10,4 @@
 #= require app/app
 #= require app/categories
 #= require app/extensions
-
-$(document).ready ->
-  if ($(window).width() < 769)
-    $('#sidebar').insertAfter($('.intro'))
-
-  $('[data-toggle]').click ->
-    selector = $(this).data('toggle')
-    $(selector).slideToggle()
+#= require app/mobile
