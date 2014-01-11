@@ -23,7 +23,6 @@ For local development, start the server with `grunt serve`.
 
 ## Roadmap
 
-* Filter by keyword/search.
 * Add more pages from the Backbone wiki
 
 ## Contributing
