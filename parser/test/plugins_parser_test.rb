@@ -9,7 +9,7 @@ class PluginsParserTest < Minitest::Unit::TestCase
   end
 
   def test_amount_of_extensions
-    assert_equal 195, @results.size
+    assert_equal 200, @results.size
   end
 
   def test_first_extension
@@ -22,8 +22,8 @@ class PluginsParserTest < Minitest::Unit::TestCase
   end
 
   def test_first_extension_in_the_model_category
-    assert_equal 'Backbone.DocumentModel', @results[9][:title]
-    assert_equal 'Model', @results[9][:category]
+    assert_equal 'Backbone Debugger', @results[9][:title]
+    assert_equal 'Tools', @results[9][:category]
   end
 
   def test_categories_count
