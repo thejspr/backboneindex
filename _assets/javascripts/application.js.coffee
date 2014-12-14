@@ -4,7 +4,7 @@
 #= require vendor/showdown-github
 #= require vendor/underscore-min
 #= require vendor/backbone-min
-#= require vendor/backbone.marionette
+#= require vendor/backbone.marionette.min
 #
 # -- application --
 #= require app/app
