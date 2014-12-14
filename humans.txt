@@ -1,4 +1,5 @@
 Author: Jesper Kjeldgaard
 Contact: thejspr@gmail.com
+Site: https://thejspr.com
 Twitter: @thejspr
-Location: London, United Kingdom
+Location: Aarhus, Denmark
