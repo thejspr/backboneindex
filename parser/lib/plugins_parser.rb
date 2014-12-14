@@ -14,18 +14,22 @@ class PluginsParser
   end
 
   def categories
-    @categories ||= @content.scan(/(\w+)\n-{4,}/).flatten
+    @categories ||= @content.scan(/(\w+)\r\n-{4,}/).flatten
   end
 
   private
 
   def rows(category)
     category_rows(category).map do |section|
-      lines = section.split("\n").map(&:strip)
+      lines = section.split("\r\n").map(&:strip)
+
       next if lines.empty?
-      { title: lines.first,
+
+      {
+        title: lines.first,
         category: category,
-        description: lines[1..-1].join("\n\n").strip }
+        description: lines[1..-1].join("\n\n").strip
+      }
     end.compact
   end
 
@@ -34,6 +38,6 @@ class PluginsParser
   end
 
   def sections
-    @sections ||= @content.split(/\w+\n-{4,}/)[1..-1]
+    @sections ||= @content.split(/\w+\r\n-{4,}/)[1..-1]
   end
 end

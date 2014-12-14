@@ -3,7 +3,7 @@
 require 'json'
 require './parser/lib/plugins_parser'
 
-parser = PluginsParser.new(File.read("parser/backbone.wiki/Extensions,-Plugins,-Resources.md"))
+parser = PluginsParser.new(File.read("parser/backbone.wiki/Extensions, Plugins, Resources.md"))
 
 extensions = parser.parse
 File.open("data/extensions.json", 'w') { |f| f.write(extensions.to_json) }
