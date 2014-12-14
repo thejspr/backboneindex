@@ -11007,6 +11007,8 @@ var Marionette=function(a,b,c){"use strict";function d(a,b){var c=new Error(a);t
 
 }).call(this);
 (function() {
-
+  $(function() {
+    return BackboneIndex.start();
+  });
 
 }).call(this);
