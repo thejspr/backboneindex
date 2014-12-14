@@ -15,6 +15,7 @@ a:hover
   margin-left: 0
 
 #extensions
+  width: 100%
   overflow: scroll
 
 h1.title a
@@ -27,15 +28,16 @@ h1.title a
 .centered
   text-align: center
 
-.sticky
-  position: fixed
-  width: 200px
-  top: 5px
-  -webkit-transform: translateZ(0)
-  -moz-transform: translateZ(0)
-  -ms-transform: translateZ(0)
-  -o-transform: translateZ(0)
-  transform: translateZ(0)
+@media (min-width: 768px)
+  .sticky
+    position: fixed
+    width: 200px
+    top: 5px
+    -webkit-transform: translateZ(0)
+    -moz-transform: translateZ(0)
+    -ms-transform: translateZ(0)
+    -o-transform: translateZ(0)
+    transform: translateZ(0)
 
 .fork-badge
   position: absolute
@@ -60,8 +62,7 @@ a.title
   color: #000
 
 .extension-counter
-  float: right
-  margin-top: -20px
+  text-align: right
   color: #ccc
 
 .label-pink

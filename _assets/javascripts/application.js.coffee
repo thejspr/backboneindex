@@ -1,9 +1,9 @@
 # -- dependencies --
-#= require vendor/jquery
+#= require vendor/jquery.min
 #= require vendor/showdown
 #= require vendor/showdown-github
-#= require vendor/underscore
-#= require vendor/backbone
+#= require vendor/underscore-min
+#= require vendor/backbone-min
 #= require vendor/backbone.marionette
 #
 # -- application --
