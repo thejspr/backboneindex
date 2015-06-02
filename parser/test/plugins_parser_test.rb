@@ -3,13 +3,13 @@ require_relative '../lib/plugins_parser'
 
 class PluginsParserTest < Minitest::Unit::TestCase
   def setup
-    file = File.open(File.join(Dir.pwd, 'backbone.wiki/Extensions, Plugins, Resources.md'))
+    file = File.open(File.join(Dir.pwd, 'backbone.wiki/Extensions,-Plugins,-Resources.md'))
     @parser = PluginsParser.new(file.read)
     @results = @parser.parse
   end
 
   def test_amount_of_extensions
-    assert_equal 212, @results.size
+    assert_equal 218, @results.size
   end
 
   def test_first_extension
