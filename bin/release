@@ -2,7 +2,7 @@
 
 set -e
 
-jekyll build --destination _gh-pages
+bundle exec jekyll build --destination _gh-pages
 
 echo "Commiting changes and pushing to Github"
 
