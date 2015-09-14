@@ -4,7 +4,7 @@ set -e
 
 cd parser
 
-ruby test/plugins_parser_test.rb
+bundle exec ruby test/plugins_parser_test.rb
 
 # TODO: test jekyll site build
 # cd ..
