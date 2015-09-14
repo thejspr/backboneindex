@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require_relative '../lib/plugins_parser'
 
-class PluginsParserTest < Minitest::Unit::TestCase
+class PluginsParserTest < Minitest::Test
   def setup
     file = File.open(File.join(Dir.pwd, 'backbone.wiki/Extensions,-Plugins,-Resources.md'))
     @parser = PluginsParser.new(file.read)
@@ -9,7 +9,7 @@ class PluginsParserTest < Minitest::Unit::TestCase
   end
 
   def test_amount_of_extensions
-    assert_equal 218, @results.size
+    assert_equal 224, @results.size
   end
 
   def test_first_extension
