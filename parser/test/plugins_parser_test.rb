@@ -22,7 +22,7 @@ class PluginsParserTest < Minitest::Test
   end
 
   def test_first_extension_in_the_model_category
-    assert_equal 'Backbone Debugger', @results[9][:title]
+    assert_equal 'Backbone Eye', @results[9][:title]
     assert_equal 'Tools', @results[9][:category]
   end
 
