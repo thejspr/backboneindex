@@ -9,7 +9,7 @@ class PluginsParserTest < Minitest::Test
   end
 
   def test_amount_of_extensions
-    assert_equal 228, @results.size
+    assert_equal 227, @results.size
   end
 
   def test_first_extension
